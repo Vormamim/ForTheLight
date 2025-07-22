@@ -1,83 +1,35 @@
-#!/usr/bin/env python3
-"""
-The Wheel of Time - Text Adventure Game
-Main game loop and initialization
-"""
+# main.py
 
-import os
-import sys
-import time
-import random
-from functions import *
-from data import *
+from data import rooms, starting_room
+from functions import show_location, get_command, move, take_item, check_end_game
 
 def main():
-    """Main game loop"""
-    # Initialize the game
-    clear_screen()
-    print_colored(TITLE_TEXT, "cyan")
-    time.sleep(2)
-    
-    # Character selection
-    player = select_character()
-    if not player:
-        return
-    
-    # Game introduction
-    clear_screen()
-    animated_print(f"\nWelcome, {player['name']}!\n", "green")
-    animated_print(player['intro'], "white")
-    time.sleep(2)
-    
-    # Initialize game state
-    game_state = {
-        'player': player,
-        'current_location': 'emond_field',
-        'inventory': player['starting_items'].copy(),
-        'health': player['health'],
-        'max_health': player['health'],
-        'experience': 0,
-        'level': 1,
-        'game_flags': {},
-        'visited_locations': set()
-    }
-    
-    # Main game loop
-    animated_print("\n🎮 Welcome to your adventure!", "green")
-    animated_print("Type 'help' to see all commands, or 'tutorial' for a quick guide.", "yellow")
-    animated_print("Remember: Use TWO WORDS like 'take sword' or 'go north'\n", "cyan")
-    
-    while True:
-        try:
-            # Display current location
-            display_location(game_state)
-            
-            # Get player input
-            command = input(f"\n{PROMPT_SYMBOL} ").strip().lower()
-            
-            if not command:
-                continue
-                
-            # Parse and execute command
-            result = parse_command(command, game_state)
-            
-            if result == "quit":
-                break
-            elif result == "death":
-                game_over(game_state)
-                break
-            elif result == "victory":
-                victory_screen(game_state)
-                break
-                
-        except KeyboardInterrupt:
-            print_colored("\n\nGame interrupted. Farewell!", "red")
-            break
-        except Exception as e:
-            print_colored(f"\nAn error occurred: {e}", "red")
-            continue
-    
-    print_colored("\nMay you always find water and shade.\n", "cyan")
+    current_room = starting_room
+    inventory = []
 
-if __name__ == "__main__":
-    main()
+    print("Welcome to *ANDOR: The Escape Begins*.")
+    print("You are Cassian Andor, trapped on a corporate planet. Escape... or die.")
+
+    while True:
+        show_location(current_room, rooms)
+        command = get_command()
+
+        if command.startswith("go "):
+            direction = command[3:]
+            new_room = move(current_room, direction, rooms)
+            if new_room:
+                current_room = new_room
+        elif command.startswith("take "):
+            item = command[5:]
+            take_item(current_room, item, rooms, inventory)
+        elif command == "inventory":
+            print("Inventory:", ", ".join(inventory) if inventory else "You have nothing.")
+        elif command in ["quit", "exit"]:
+            print("Game over.")
+            break
+
+        if check_end_game(current_room, inventory):
+            break
+
+
+main()
