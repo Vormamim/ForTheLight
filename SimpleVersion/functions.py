@@ -109,6 +109,47 @@ def show_help():
     print("  go north/south/east/west - Move around the planet")
     print("  look - Look around your current location")
     print("  inventory - Check what pieces you've found")
+    print("  map - Show the planet map")
     print("  quit - Quit the game")
     print("\nGoal: Find all 6 generator pieces before your energy runs out!")
     print("Moving costs 3 energy, finding pieces gives you 10 energy.")
+
+def show_map(current_location, inventory):
+    """Display a visual map of the planet"""
+    print("\n" + "=" * 60)
+    print("                    PLANET MAP")
+    print("=" * 60)
+    
+    # Map symbols
+    symbols = []
+    for i in range(10):
+        if i == current_location:
+            symbols.append("[@]")  # Player location
+        elif LOCATION_ITEMS[i] and LOCATION_ITEMS[i] in inventory:
+            symbols.append("[✓]")  # Found item
+        elif LOCATION_ITEMS[i]:
+            symbols.append("[?]")  # Unknown item location
+        else:
+            symbols.append("[ ]")  # Empty location
+    
+    # Print the map grid
+    print(f"  {symbols[0]}--{symbols[1]}--{symbols[2]}")
+    print("   |    |    |")
+    print(f"  {symbols[3]}--{symbols[4]}--{symbols[5]}")
+    print("   |    |    |")
+    print(f"  {symbols[6]}--{symbols[7]}--{symbols[8]}")
+    print("        |")
+    print(f"       {symbols[9]}")
+    
+    print("\nLEGEND:")
+    print("[@] = Your current location")
+    print("[✓] = Generator piece found")
+    print("[?] = Unexplored area (may contain pieces)")
+    print("[ ] = Empty area")
+    
+    print("\nLOCATIONS:")
+    print("0: Crash Site       1: Rocky Outcrop    2: Crystal Cave")
+    print("3: Dense Forest     4: Ancient Ruins    5: Frozen Lake")
+    print("6: Volcanic Vents   7: Metal Wreckage   8: Strange Monolith")
+    print("9: Energy Crater")
+    print("=" * 60)

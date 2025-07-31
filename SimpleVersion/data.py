@@ -51,5 +51,46 @@ LOCATION_ITEMS = [
 # [6] [7] [8]
 #     [9]
 
+# Visual Map Layout:
+#  [0]--[1]--[2]     Crash Site -- Rocky Outcrop -- Crystal Cave
+#   |    |    |              |            |              |
+#  [3]--[4]--[5]   Dense Forest -- Ancient Ruins -- Frozen Lake  
+#   |    |    |              |            |              |
+#  [6]--[7]--[8]  Volcanic Vents -- Metal Wreckage -- Strange Monolith
+#       |                        |
+#      [9]                  Energy Crater
+
 # The 6 generator pieces are scattered at locations 1, 2, 3, 4, 5, 6
 # Locations 0, 7, 8, 9 have no items but can be explored
+
+def print_game_map():
+    """Print a static visual representation of the game map"""
+    print("\n" + "=" * 70)
+    print("                        DEAD SHIP - PLANET MAP")
+    print("=" * 70)
+    print()
+    print("  [0]────[1]────[2]      Crash Site ──── Rocky Outcrop ──── Crystal Cave")
+    print("   │      │      │              │               │                │")
+    print("   │      │      │              │               │                │") 
+    print("  [3]────[4]────[5]    Dense Forest ──── Ancient Ruins ──── Frozen Lake")
+    print("   │      │      │              │               │                │")
+    print("   │      │      │              │               │                │")
+    print("  [6]────[7]────[8]   Volcanic Vents ─── Metal Wreckage ─── Strange Monolith")
+    print("         │                      │")
+    print("         │                      │")
+    print("        [9]              Energy Crater")
+    print()
+    print("GENERATOR PIECES LOCATIONS:")
+    print("  [1] Rocky Outcrop    - Power Core Fragment")
+    print("  [2] Crystal Cave     - Energy Crystal") 
+    print("  [3] Dense Forest     - Bio-Fuel Cell")
+    print("  [4] Ancient Ruins    - Ancient Battery")
+    print("  [5] Frozen Lake      - Cooling Unit")
+    print("  [6] Volcanic Vents   - Heat Exchanger")
+    print()
+    print("EMPTY LOCATIONS (no generator pieces):")
+    print("  [0] Crash Site       - Starting location")
+    print("  [7] Metal Wreckage   - Exploration area")
+    print("  [8] Strange Monolith - Exploration area") 
+    print("  [9] Energy Crater    - Exploration area")
+    print("=" * 70)

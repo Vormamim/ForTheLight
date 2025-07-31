@@ -1,10 +1,10 @@
-#!/usr/bin/env pyth    print("Commands: go north, go south, go east, go west, look, inventory, help, quit")n3
+#!/usr/bin/env pyth    print("Commands: go north, go south, go east, go west, look, inventory, map, help, quit")n3
 """
 Dead Ship - Simple Text Adventure Game
 Main game loop
 """
 
-from functions import show_location, move_player, check_for_item, add_to_inventory, show_inventory, check_game_over, show_help
+from functions import show_location, move_player, check_for_item, add_to_inventory, show_inventory, check_game_over, show_help, show_map
 from data import *
 
 def main():
@@ -59,6 +59,11 @@ def main():
         # Handle help command
         elif command == "help":
             show_help()
+            continue
+        
+        # Handle map command
+        elif command == "map":
+            show_map(player_location, inventory)
             continue
         
         # Handle movement commands

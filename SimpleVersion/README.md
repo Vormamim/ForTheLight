@@ -6,6 +6,37 @@ A beginner-friendly Python text adventure game for learning programming concepts
 
 Your spaceship has crashed on an alien planet! The energy generator has been smashed into 6 pieces scattered across the planet. You must find all 6 pieces before your energy runs out, or you'll be stranded forever!
 
+## Map
+======================================================================
+                        DEAD SHIP - PLANET MAP
+======================================================================
+
+  [0]────[1]────[2]      Crash Site ──── Rocky Outcrop ──── Crystal Cave
+   │      │      │              │               │                │
+   │      │      │              │               │                │ 
+  [3]────[4]────[5]    Dense Forest ──── Ancient Ruins ──── Frozen Lake
+   │      │      │              │               │                │
+   │      │      │              │               │                │
+  [6]────[7]────[8]   Volcanic Vents ─── Metal Wreckage ─── Strange Monolith
+         │                      │
+         │                      │
+        [9]              Energy Crater
+
+GENERATOR PIECES LOCATIONS:
+  [1] Rocky Outcrop    - Power Core Fragment
+  [2] Crystal Cave     - Energy Crystal 
+  [3] Dense Forest     - Bio-Fuel Cell
+  [4] Ancient Ruins    - Ancient Battery
+  [5] Frozen Lake      - Cooling Unit
+  [6] Volcanic Vents   - Heat Exchanger
+
+EMPTY LOCATIONS (no generator pieces):
+  [0] Crash Site       - Starting location
+  [7] Metal Wreckage   - Exploration area
+  [8] Strange Monolith - Exploration area 
+  [9] Energy Crater    - Exploration area
+======================================================================
+
 ## How to Play
 
 ### Starting the Game
